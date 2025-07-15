@@ -15,7 +15,15 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        String []words = input.split(" ");
+        int count = 0;
+
+        for(String word:words){
+            System.out.println(word);
+            if(word.charAt(word.length()-1)=='y' || word.charAt(word.length()-1)=='z')
+                count++;
+        }
+        return count;
     }
 
     /**
@@ -28,8 +36,9 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        return base.replaceAll(remove, "");
     }
+    
 
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
@@ -39,11 +48,47 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
-    public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+    public boolean containsEqualNumberOfIsAndNot(String input){
+        
+        // String lowerinput = input.toLowerCase();
+        // String isArr[] = lowerinput.split("is");
+        // String notArr[] = lowerinput.split("not");
+
+        // for(String is:isArr){
+        //     System.out.print(is+"-");
+        // }
+
+        // System.out.println(" enter\n");
+
+        // for(String not:notArr){
+        //     System.out.print(not+"-");
+        // }
+        
+        // return isArr.length-1==notArr.length-1;
+        
+
+        int isC = 0;
+        int notC = 0;
+        int index;
+        
+        index = input.indexOf("is");
+
+        while(index!=-1){
+            isC++;
+            index = input.indexOf("is", index+1);
+        }
+
+        int index2 = input.indexOf("not");
+        while (index2!=-1) {
+            notC++;
+            index2 = input.indexOf("not", index2+1);
+        }
+
+        return isC==notC;
+
     }
 
-    /**
+    /**s
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
      * Return true if all the g's in the given string are happy.
      * example : gHappy("xxggxx") // Should return  true
@@ -51,7 +96,14 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        int index = input.indexOf("g");
+        boolean temp = true;
+        while (index!=-1) {
+            if(input.charAt(index-1)!='g'&&input.charAt(index+1)!='g')
+                temp = false;
+            index = input.indexOf("g", index+1);
+        }
+        return temp;
     }
 
 
@@ -63,6 +115,13 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+
+        int count = 0;
+
+        for(int i = 0; i < input.length()-3;i++){
+            if(input.charAt(i+1)==input.charAt(i)&& input.charAt(i+2)==input.charAt(i))
+                count++;
+        }
+        return count;
     }
 }
